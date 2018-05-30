@@ -6,7 +6,8 @@ const express = require('express'),
     port = config.port,
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 MongoClient.connect(config.db.url, { useNewUrlParser: true }, (err, database) => {
     if (err)
@@ -17,5 +18,5 @@ MongoClient.connect(config.db.url, { useNewUrlParser: true }, (err, database) =>
 
 
 app.listen(port, () => {
-    console.log('started');
+	console.log('Server Started Successfully...');
 });
