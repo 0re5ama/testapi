@@ -2,11 +2,12 @@ const express = require('express'),
 	MongoClient = require('mongodb').MongoClient,
 	bodyParser = require('body-parser'),
 	app = express(),
-	port = 80,
-	config = require('./config');
+	config = require('./config'),
+	port = config.port;
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 MongoClient.connect(config.db.url, { useNewUrlParser: true }, (err, database) => {
 	if (err)
@@ -17,5 +18,5 @@ MongoClient.connect(config.db.url, { useNewUrlParser: true }, (err, database) =>
 
 
 app.listen(port, () => {
-	console.log('hello world');
+	console.log('Server Started Successfully...');
 });
